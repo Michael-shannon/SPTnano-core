@@ -1,0 +1,37 @@
+# Windows environment: every notebook except training.
+#   conda env create -f environment.yml
+#   conda activate sptnano
+#   pip install -e .
+# Tested with Python 3.12, numpy 1.26, polars 1.32, scikit-learn 1.5, torch 2.5 (CPU is fine for prediction).
+name: sptnano
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - numpy<2
+  - pandas
+  - polars
+  - pyarrow
+  - scipy
+  - scikit-learn
+  - scikit-image
+  - shapely
+  - matplotlib
+  - seaborn
+  - pyyaml
+  - tqdm
+  - joblib
+  - tifffile
+  - imageio
+  - imageio-ffmpeg
+  - ipywidgets
+  - jupyterlab
+  - umap-learn
+  - hmmlearn
+  - napari
+  - pyqt
+  - pip
+  - pip:
+      - nd2reader
+      - phate
+      - torch

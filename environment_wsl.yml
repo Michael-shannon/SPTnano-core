@@ -1,0 +1,20 @@
+# WSL (Ubuntu) environment for training on the GPU. Only what scripts/train.py needs.
+#   conda env create -f environment_wsl.yml
+# The name matches wsl/train_transformer.sh.
+name: nanoSPTlinux
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - numpy<2
+  - pandas
+  - polars
+  - pyarrow
+  - scipy
+  - scikit-learn
+  - pyyaml
+  - tqdm
+  - pip
+  - pip:
+      - --extra-index-url https://download.pytorch.org/whl/cu121
+      - torch

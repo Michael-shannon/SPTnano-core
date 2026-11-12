@@ -1,0 +1,56 @@
+# Which experiment folders go into one set of master tables, and any per-folder fixes.
+# Filled in with the HAP40 dataset as a worked example. Edit for your own data.
+#
+# Each folder must contain saved_data/instant_df_processed.csv and saved_data/time_windowed_df_processed.csv.
+# Metadata is read from the filename (key-value tokens in any order), e.g.
+#   loc-GC_type-vent_mol-HTT_geno-20H20S_cas-pos_dox-neg_dday-0_sur-lam_002_cropped_tracked
+# and from the folder name (group-<name>, the date at the start, ventral/cortical).
+
+master_dir: F:/Analyzed/DATA_BEING_USED_HAP40
+save_dir: F:/Analyzed/DATA_BEING_USED_HAP40/dataframes
+
+folders:
+  8_27_2026_ventral_group-hap40Q150_analyze: {replicate: R4, defaults: {dday: "0"}}
+  9_2_2026_ventral_group-hap40Q77_analyze: {replicate: R4, defaults: {dday: "0"}}
+  9-10-2026_cortical_group-hap40Q150_analyze: {replicate: R4}
+  9-17-2026_cortical_group-hap40Q77_analyze: {replicate: R4}
+
+# Used when a filename does not say it.
+defaults:
+  sur: lam
+
+# If the Condition_ folder and the filename disagree on geno/cas/dox: "filename" or "condition" wins.
+condition_conflict_source: filename
+
+# {text in filename: {column: value}} - forced values, applied last.
+manual_filename_overrides: {}
+
+# Files that were in the wrong Condition_ folder: {folder: {filename: correct condition}}
+condition_corrections:
+  9-10-2026_cortical_group-hap40Q150_analyze:
+    loc-CB_type-cort_mol-HTT_geno-20H150S_cas-pos_dox-neg_dday-0_sur-lam_002_cropped_tracked: Condition_20H150S_cas-pos_dox-neg
+    loc-CB_type-cort_mol-HTT_geno-20H150S_cas-pos_dox-neg_dday-0_sur-lam_003_cropped_tracked: Condition_20H150S_cas-pos_dox-neg
+    loc-CB_type-cort_mol-HTT_geno-20H150S_cas-pos_dox-neg_dday-0_sur-lam_009_cropped_tracked: Condition_20H150S_cas-pos_dox-neg
+    loc-CB_type-cort_mol-HTT_geno-20H150S_cas-pos_dox-neg_dday-0_sur-lam_010_cropped_tracked: Condition_20H150S_cas-pos_dox-neg
+    loc-CB_type-cort_mol-HTT_geno-20H150S_cas-pos_dox-neg_dday-0_sur-lam_025_cropped_tracked: Condition_20H150S_cas-pos_dox-neg
+
+# Files with a wrong token in the name: {folder: {wrong filename: correct filename}}
+filename_corrections:
+  9-17-2026_cortical_group-hap40Q77_analyze:
+    loc-CB_type-cort_mol-HTT_geno-20H20S_cas-pos_dox-pos_sur-lam_dday-14_056_cropped_tracked: loc-CB_type-cort_mol-HTT_geno-20H20S_cas-pos_dox-neg_sur-lam_dday-14_056_cropped_tracked
+    loc-CB_type-cort_mol-HTT_geno-20H20S_cas-pos_dox-pos_sur-lam_dday-14_057_cropped_tracked: loc-CB_type-cort_mol-HTT_geno-20H20S_cas-pos_dox-neg_sur-lam_dday-14_057_cropped_tracked
+    loc-CB_type-cort_mol-HTT_geno-20H20S_cas-pos_dox-pos_sur-lam_dday-14_060_cropped_tracked: loc-CB_type-cort_mol-HTT_geno-20H20S_cas-pos_dox-neg_sur-lam_dday-14_060_cropped_tracked
+    loc-CB_type-cort_mol-HTT_geno-20H20S_cas-pos_dox-pos_sur-lam_dday-14_061_cropped_tracked: loc-CB_type-cort_mol-HTT_geno-20H20S_cas-pos_dox-neg_sur-lam_dday-14_061_cropped_tracked
+    loc-CB_type-cort_mol-HTT_geno-20H20S_cas-pos_dox-pos_sur-lam_dday-14_062_cropped_tracked: loc-CB_type-cort_mol-HTT_geno-20H20S_cas-pos_dox-neg_sur-lam_dday-14_062_cropped_tracked
+    loc-CB_type-cort_mol-HTT_geno-20H20S_cas-pos_dox-pos_sur-lam_dday-14_070_cropped_tracked: loc-CB_type-cort_mol-HTT_geno-20H20S_cas-pos_dox-neg_sur-lam_dday-14_070_cropped_tracked
+    loc-CB_type-cort_mol-HTT_geno-20H20S_cas-pos_dox-pos_sur-lam_dday-14_071_cropped_tracked: loc-CB_type-cort_mol-HTT_geno-20H20S_cas-pos_dox-neg_sur-lam_dday-14_071_cropped_tracked
+    loc-GC_type-cort_mol-HTT_geno-20H20S_cas-pos_dox-pos_sur-lam_dday-14_055_cropped_tracked: loc-GC_type-cort_mol-HTT_geno-20H20S_cas-pos_dox-neg_sur-lam_dday-14_055_cropped_tracked
+    loc-GC_type-cort_mol-HTT_geno-20H20S_cas-pos_dox-pos_sur-lam_dday-14_058_cropped_tracked: loc-GC_type-cort_mol-HTT_geno-20H20S_cas-pos_dox-neg_sur-lam_dday-14_058_cropped_tracked
+    loc-GC_type-cort_mol-HTT_geno-20H20S_cas-pos_dox-pos_sur-lam_dday-14_059_cropped_tracked: loc-GC_type-cort_mol-HTT_geno-20H20S_cas-pos_dox-neg_sur-lam_dday-14_059_cropped_tracked
+    loc-GC_type-cort_mol-HTT_geno-20H20S_cas-pos_dox-pos_sur-lam_dday-14_064_cropped_tracked: loc-GC_type-cort_mol-HTT_geno-20H20S_cas-pos_dox-neg_sur-lam_dday-14_064_cropped_tracked
+    loc-GC_type-cort_mol-HTT_geno-20H20S_cas-pos_dox-pos_sur-lam_dday-14_065_cropped_tracked: loc-GC_type-cort_mol-HTT_geno-20H20S_cas-pos_dox-neg_sur-lam_dday-14_065_cropped_tracked
+    loc-GC_type-cort_mol-HTT_geno-20H20S_cas-pos_dox-pos_sur-lam_dday-14_066_cropped_tracked: loc-GC_type-cort_mol-HTT_geno-20H20S_cas-pos_dox-neg_sur-lam_dday-14_066_cropped_tracked
+    loc-GC_type-cort_mol-HTT_geno-20H20S_cas-pos_dox-pos_sur-lam_dday-14_067_cropped_tracked: loc-GC_type-cort_mol-HTT_geno-20H20S_cas-pos_dox-neg_sur-lam_dday-14_067_cropped_tracked
+    loc-GC_type-cort_mol-HTT_geno-20H20S_cas-pos_dox-pos_sur-lam_dday-14_068_cropped_tracked: loc-GC_type-cort_mol-HTT_geno-20H20S_cas-pos_dox-neg_sur-lam_dday-14_068_cropped_tracked
+    loc-GC_type-cort_mol-HTT_geno-20H20S_cas-pos_dox-pos_sur-lam_dday-14_069_cropped_tracked: loc-GC_type-cort_mol-HTT_geno-20H20S_cas-pos_dox-neg_sur-lam_dday-14_069_cropped_tracked
+    loc-NN_type-cort_mol-HTT_geno-20H20S_cas-pos_dox-pos_sur-lam_dday-14_063_cropped_tracked: loc-NN_type-cort_mol-HTT_geno-20H20S_cas-pos_dox-neg_sur-lam_dday-14_063_cropped_tracked

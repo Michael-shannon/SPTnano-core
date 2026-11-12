@@ -1,0 +1,72 @@
+# Hierarchical gates used to label windows for training.
+#
+# Gate 1: avg_speed_um_s (x) vs self_intersections (y), both scaled to 0-1.
+# Gate 2: anomalous_exponent (x) vs cum_displacement_um (y), raw values, only inside gate 1 low_speed_low_intersections.
+# A point must be strictly inside a gate (points on an edge are ungated). If gates overlap, the later one wins.
+
+# StandardScaler -> MinMaxScaler fitted on the full windowed table (1,061,289 windows, bad fits removed).
+# Stored so new data is scaled exactly like the training data.
+gate1_scaler:
+  columns: [avg_speed_um_s, self_intersections]
+  standard_mean: [14.543954041788213, 71.14880301218612]
+  standard_scale: [7.578636429958909, 68.08931577372972]
+  minmax_min: [0.3119211162365339, 0.1241689406844435]
+  minmax_scale: [0.17903863415130883, 0.11882952142012168]
+
+gate1:
+  x: avg_speed_um_s
+  y: self_intersections
+  rectangles:              # name: [x_min, x_max, y_min, y_max] in scaled units
+    low_speed_low_intersections: [0.0, 0.2, 0.0, 0.14]
+    high_speed_low_intersections: [0.2, 1.0, 0.0, 0.14]
+    low_speed_high_intersections: [0.0, 0.3, 0.14, 1.0]
+    high_speed_high_intersections: [0.3, 1.0, 0.14, 1.0]
+
+gate2:
+  x: anomalous_exponent
+  y: cum_displacement_um
+  parent: low_speed_low_intersections
+  polygons:
+    - name: high_a_low_displacement
+      points: [[1.1, 0], [2.25, 8], [3, 8], [3, 0]]
+    - name: low_a_high_displacement
+      points: [[-0.5, 0], [-0.5, 8], [2.25, 8], [1.1, 0]]
+
+# Tighter "certain" gates. A window keeps its label only if the certain gate agrees with gate 1/2.
+certain_gate1:
+  rectangles:
+    certain_parent_low_speed_low_intersections: [0.00, 0.16, 0.00, 0.10]
+    certain_fast_exploratory: [0.28, 1.00, 0.00, 0.10]
+    certain_bound: [0.00, 0.24, 0.22, 1.00]
+    certain_mixed_exploratory: [0.38, 1.00, 0.22, 1.00]
+
+certain_gate2:
+  parent: certain_parent_low_speed_low_intersections
+  polygons:
+    - name: certain_transport
+      points: [[1.30, 0], [2.40, 8], [3.0, 8], [3.0, 0]]
+    - name: certain_confined
+      points: [[-0.5, 0], [-0.5, 8], [2.05, 8], [0.90, 0]]
+    - name: certain_confined
+      points: [[-0.5, 0], [-0.5, 8.0], [0.9, 8.0], [0.65, 0]]
+
+# Gate -> population name -> short training label.
+populations:
+  high_a_low_displacement: superdiffusive_transport
+  low_a_high_displacement: subdiffusive_motion
+  high_speed_low_intersections: fast_exploratory
+  low_speed_high_intersections: bound_stationary
+  high_speed_high_intersections: mixed_exploratory_bound
+
+short_labels:
+  bound_stationary: bound
+  subdiffusive_motion: confined
+  superdiffusive_transport: transport
+  fast_exploratory: exploratory
+  mixed_exploratory_bound: exploratory
+  ungatedgate1: ungatedgate1
+  unknown: unknown
+
+# Colours for gate plots (gate order as listed above).
+gate1_colors: ['#ed1e24', '#DE8F05', '#6cc176', '#95d6d7']
+gate2_colors: ['#ed1e24', '#DE8F05']

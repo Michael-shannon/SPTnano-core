@@ -1,0 +1,78 @@
+# Settings used for the paper. Every notebook and script reads this file.
+
+acquisition:
+  pixel_size_um: 0.065
+  frame_interval_s: 0.01
+
+crop:
+  roi_width: 150
+  roi_height: 150
+  dark_frame_subtraction: true
+  percentile_correction: true
+  pmin: 1
+  tiff_save_mode: legacy
+
+tracks:
+  min_track_time_s: 0.6      # drop tracks shorter than this before and after splitting
+  max_jump_um: 1.0           # split a track wherever one step is longer than this
+  min_piece_time_s: 0.6      # drop pieces shorter than this after splitting
+
+windows:
+  window_size: 60
+  overlap: 30
+  allow_partial_window: false
+  min_window_size: 60
+  fit_method: r2_threshold
+  bad_fit_strategy: flag
+  r2_threshold: 0.000001
+  anomalous_r2_threshold: 0.000001
+  use_ci: true
+  ci_multiplier: 1.96
+  entropy_bins: 18
+  pausing_speed_threshold: 0.1
+  chunk_size: 2000           # tracks per parallel job
+
+splits:
+  label_col: final_population_certain
+  exclude_labels: [unknown, ungatedgate1]
+  test_replicate: R3         # every R3 track goes to test
+  cells_per_condition: 12    # plus the 12 cells with most tracks in each condition_comp
+  val_fraction: 0.10
+  balance_col: mol
+  seed: 42
+
+transformer:
+  feature_mode: block3       # 3-frame tokens: sum dx, sum dy, circular-mean heading
+  block_size: 3
+  max_seq_len: 60
+  embed_dim: 16
+  num_heads: 4
+  ff_dim: 256
+  num_layers: 3
+  mlp_hidden_dim: 32
+  mlp_dropout: 0.2
+  learning_rate: 0.0001
+  early_stopping_patience: 15
+  scheduler_patience: 5
+  scheduler_factor: 0.5
+  checkpoint_interval: 5
+  augmentation_segment_tokens: 10   # shuffle segments of 10 block3 tokens (= 30 frames)
+  seed: 42
+  num_workers: 4
+  contrastive:
+    epochs: 400
+    batch_size: 1024
+    temperature: 0.2
+  finetune:
+    epochs: 200
+    batch_size: 512
+    subset_fraction: 0.10
+    subset_min_per_class: 100
+    subset_seed: 42
+
+# How a softmax output becomes a behaviour state (used for every figure).
+softmax_states:
+  high_conf_threshold: 0.70  # top-1 probability >= this -> single state
+  mixed_top1_max: 0.70       # boundary pair needs top-1 <= this ...
+  mixed_top2_min: 0.20       # ... and top-2 >= this ...
+  mixed_margin_max: 0.40     # ... and top-1 minus top-2 <= this

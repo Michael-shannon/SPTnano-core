@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sptnano"
+version = "1.0.0"
+description = "Single-particle tracking of nanobody-labelled molecules in neurons: tracks, window features, gating and a raw-motion transformer."
+readme = "README.md"
+license = { file = "LICENSE.md" }
+authors = [{ name = "Michael Shannon" }]
+requires-python = ">=3.10"
+dependencies = [
+    "numpy",
+    "pandas",
+    "polars",
+    "pyarrow",
+    "scipy",
+    "scikit-learn",
+    "scikit-image",
+    "shapely",
+    "matplotlib",
+    "seaborn",
+    "pyyaml",
+    "tqdm",
+    "joblib",
+    "tifffile",
+    "imageio",
+    "imageio-ffmpeg",
+]
+
+[project.optional-dependencies]
+crop = ["nd2reader", "ipywidgets"]
+transformer = ["torch"]
+figures = ["umap-learn", "phate", "hmmlearn", "napari[all]"]
+
+[tool.setuptools]
+packages = ["sptnano"]
+
+[tool.ruff]
+line-length = 130

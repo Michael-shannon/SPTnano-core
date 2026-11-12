@@ -1,0 +1,32 @@
+# Copy this file to paths.local.yaml and fill in your own folders.
+# paths.local.yaml is ignored by git, so your drive letters stay private.
+# Use forward slashes. Windows paths (D:/...) are converted to /mnt/d/... automatically under WSL.
+# Relative paths are relative to the repo folder.
+
+# --- Step 1: raw images -> tracks ---
+raw_experiment_dir: D:/data/my_experiment             # one experiment: Condition_* folders with .nd2 files
+cropped_dir: D:/data/my_experiment_analyze            # where cropped tiffs (and later tracks) go
+dark_frame_dir: D:/Darkframes10ms                    # dark frames (.nd2) for dark-frame subtraction
+matlab_tracker_dir: D:/software/CODE_SMT_V2/1_coppey_EvalSpt_CodeV2
+
+# --- Step 2: features and master tables ---
+master_input_dir: D:/data/ALL_DATA_BEING_USED         # folders, each with saved_data/instant_df_processed.csv
+master_tables_dir: D:/data/ALL_DATA_BEING_USED/MASTER_DATAFRAMES
+
+# --- Step 3: gating ---
+gated_dir: D:/data/HIERARCHICAL_GATES_CERTAIN
+
+# --- Step 4-6: transformer ---
+splits_dir: D:/data/data_splits_certain_lowtrain_hightest
+model_dir: models/block3_long_large                    # the trained model shipped with this repo
+training_output_dir: D:/data/transformer_runs           # new training runs are written here
+evaluation_dir: D:/data/evaluation_block3_long_large    # held-out predictions
+
+# --- Step 7-9: figures ---
+plots_dir: D:/data/plots
+paper_plots_dir: D:/data/paper_plots                   # augmentation screen + picked supplementary movies
+contours_parquet: D:/data/contours_df_minimal_bridge_by_cell_key.parquet
+fiji_lut_dir: D:/software/Fiji.app/luts
+
+# --- Published data (notebook 10) ---
+paper_data_dir: D:/data/PAPER_FINAL_DATA_2026          # the downloaded paper tables: as_used/ and quality_filtered/

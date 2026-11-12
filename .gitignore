@@ -1,0 +1,32 @@
+# Your own folders (copy configs/paths.example.yaml)
+configs/paths.local.yaml
+
+# Python / Jupyter
+__pycache__/
+*.pyc
+*.egg-info/
+.ipynb_checkpoints/
+build/
+
+# Outputs: data and figures live outside the repo
+*.parquet
+*.csv
+*.pkl
+*.tif
+*.tiff
+*.nd2
+*.mat
+*.mp4
+*.gif
+outputs/
+checkpoints/
+*_smoke/
+slurm-*.out
+*.err
+final_model.pt
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
