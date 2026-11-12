@@ -1,0 +1,131 @@
+{
+  "model_name": "final_rawmotion_block3_long_large_ce",
+  "run_id": "block3_long_large",
+  "run_spec": {
+    "description": "Block-averaged 3-frame raw motion tokens.",
+    "arch": {
+      "input_dim": 3,
+      "embed_dim": 16,
+      "num_heads": 4,
+      "ff_dim": 256,
+      "num_layers": 3
+    },
+    "feature_mode": "block3",
+    "temperature": 0.2,
+    "contrastive_epoch_multiplier": 2.0,
+    "batch_size_arg": "large_batch_size",
+    "supervised_mode": "ce"
+  },
+  "training_type": "final_rawmotion_subset10_supervised_stage",
+  "stage": "finetune",
+  "label_regime": "subset10_labels",
+  "supervised_mode": "ce",
+  "feature_mode": "block3",
+  "pretrained_encoder": {
+    "model_name": "final_rawmotion_block3_long_large_contrastive_infonce",
+    "model_dir": "/mnt/d/TRANSFORMER_DEVELOPMENT/saved_data/models_raw3_final_clever_sweep_raw3_final_priority_lowtrain_hightest_20260616/final_rawmotion_block3_long_large_contrastive_infonce",
+    "best_val_loss": 4.337995314598084,
+    "best_epoch": 242,
+    "config": {
+      "model_name": "final_rawmotion_block3_long_large_contrastive_infonce",
+      "run_id": "block3_long_large",
+      "run_spec": {
+        "description": "Block-averaged 3-frame raw motion tokens.",
+        "arch": {
+          "input_dim": 3,
+          "embed_dim": 16,
+          "num_heads": 4,
+          "ff_dim": 256,
+          "num_layers": 3
+        },
+        "feature_mode": "block3",
+        "temperature": 0.2,
+        "contrastive_epoch_multiplier": 2.0,
+        "batch_size_arg": "large_batch_size",
+        "supervised_mode": "ce"
+      },
+      "architecture": {
+        "input_dim": 3,
+        "embed_dim": 16,
+        "num_heads": 4,
+        "ff_dim": 256,
+        "num_layers": 3,
+        "name": "final_rawmotion_block3_long_large_contrastive_encoder"
+      },
+      "training_type": "final_rawmotion_contrastive_infonce",
+      "temperature": 0.2,
+      "mask_same_unique_id": true,
+      "feature_mode": "block3",
+      "augmentation_type": "shuffle_scale_angle",
+      "shuffle_segmentation_mode": "valid_prefix",
+      "shuffle_segment_length_frames": 10,
+      "splits_path": "/mnt/d/TRANSFORMER_DEVELOPMENT/data_splits_certain_lowtrain_hightest_20260616",
+      "instant_df_path": "/mnt/d/TRANSFORMER_DEVELOPMENT/HIERARCHICAL_GATES_CERTAIN_20260528_095604/instant_df_hierarchical_gates.parquet",
+      "windowed_df_path": "/mnt/d/TRANSFORMER_DEVELOPMENT/HIERARCHICAL_GATES_CERTAIN_20260528_095604/windowed_df_hierarchical_gates.parquet",
+      "epochs_target": 400,
+      "batch_size": 1024,
+      "learning_rate": 0.0001
+    }
+  },
+  "str_to_idx": {
+    "bound": 0,
+    "confined": 1,
+    "exploratory": 2,
+    "transport": 3
+  },
+  "idx_to_str": {
+    "0": "bound",
+    "1": "confined",
+    "2": "exploratory",
+    "3": "transport"
+  },
+  "num_classes": 4,
+  "label_column": "final_population_certain",
+  "exclude_labels": [
+    "ungatedgate1",
+    "unknown"
+  ],
+  "supervised_subset": {
+    "enabled": true,
+    "fraction_requested": 0.1,
+    "n_before": 82765,
+    "n_after": 8280,
+    "classes": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "per_class_target": 2070,
+    "counts_before": {
+      "0": 25558,
+      "1": 5850,
+      "2": 46056,
+      "3": 5301
+    },
+    "counts_after": {
+      "0": 2070,
+      "1": 2070,
+      "2": 2070,
+      "3": 2070
+    }
+  },
+  "architecture": {
+    "input_dim": 3,
+    "embed_dim": 16,
+    "num_heads": 4,
+    "ff_dim": 256,
+    "num_layers": 3,
+    "head_type": "mlp",
+    "mlp_hidden_dim": 32,
+    "mlp_dropout": 0.2,
+    "num_classes": 4
+  },
+  "splits_path": "/mnt/d/TRANSFORMER_DEVELOPMENT/data_splits_certain_lowtrain_hightest_20260616",
+  "instant_df_path": "/mnt/d/TRANSFORMER_DEVELOPMENT/HIERARCHICAL_GATES_CERTAIN_20260528_095604/instant_df_hierarchical_gates.parquet",
+  "windowed_df_path": "/mnt/d/TRANSFORMER_DEVELOPMENT/HIERARCHICAL_GATES_CERTAIN_20260528_095604/windowed_df_hierarchical_gates.parquet",
+  "epochs_target": 200,
+  "learning_rate": 0.0001,
+  "consistency_weight": 0.25,
+  "consistency_confidence_threshold": 0.0
+}

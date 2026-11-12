@@ -1,0 +1,40 @@
+{
+  "model_name": "final_rawmotion_block3_long_large_contrastive_infonce",
+  "run_id": "block3_long_large",
+  "run_spec": {
+    "description": "Block-averaged 3-frame raw motion tokens.",
+    "arch": {
+      "input_dim": 3,
+      "embed_dim": 16,
+      "num_heads": 4,
+      "ff_dim": 256,
+      "num_layers": 3
+    },
+    "feature_mode": "block3",
+    "temperature": 0.2,
+    "contrastive_epoch_multiplier": 2.0,
+    "batch_size_arg": "large_batch_size",
+    "supervised_mode": "ce"
+  },
+  "architecture": {
+    "input_dim": 3,
+    "embed_dim": 16,
+    "num_heads": 4,
+    "ff_dim": 256,
+    "num_layers": 3,
+    "name": "final_rawmotion_block3_long_large_contrastive_encoder"
+  },
+  "training_type": "final_rawmotion_contrastive_infonce",
+  "temperature": 0.2,
+  "mask_same_unique_id": true,
+  "feature_mode": "block3",
+  "augmentation_type": "shuffle_scale_angle",
+  "shuffle_segmentation_mode": "valid_prefix",
+  "shuffle_segment_length_frames": 10,
+  "splits_path": "/mnt/d/TRANSFORMER_DEVELOPMENT/data_splits_certain_lowtrain_hightest_20260616",
+  "instant_df_path": "/mnt/d/TRANSFORMER_DEVELOPMENT/HIERARCHICAL_GATES_CERTAIN_20260528_095604/instant_df_hierarchical_gates.parquet",
+  "windowed_df_path": "/mnt/d/TRANSFORMER_DEVELOPMENT/HIERARCHICAL_GATES_CERTAIN_20260528_095604/windowed_df_hierarchical_gates.parquet",
+  "epochs_target": 400,
+  "batch_size": 1024,
+  "learning_rate": 0.0001
+}

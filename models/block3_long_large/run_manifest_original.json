@@ -1,0 +1,22 @@
+[
+  {
+    "run_id": "block3_long_large",
+    "description": "Block-averaged 3-frame raw motion tokens.",
+    "feature_mode": "block3",
+    "architecture": {
+      "input_dim": 3,
+      "embed_dim": 16,
+      "num_heads": 4,
+      "ff_dim": 256,
+      "num_layers": 3
+    },
+    "pretrain_model_name": "final_rawmotion_block3_long_large_contrastive_infonce",
+    "pretrain_model_dir": "/mnt/d/TRANSFORMER_DEVELOPMENT/saved_data/models_raw3_final_clever_sweep_raw3_final_priority_lowtrain_hightest_20260616/final_rawmotion_block3_long_large_contrastive_infonce",
+    "pretrain_best_val_loss": 4.337995314598084,
+    "pretrain_best_epoch": 242,
+    "model_name": "final_rawmotion_block3_long_large_ce",
+    "model_dir": "/mnt/d/TRANSFORMER_DEVELOPMENT/saved_data/models_raw3_final_clever_sweep_raw3_final_priority_lowtrain_hightest_20260616/final_rawmotion_block3_long_large_ce",
+    "best_val_loss": 0.23579612570373634,
+    "best_epoch": 98
+  }
+]
