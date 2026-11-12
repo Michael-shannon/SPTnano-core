@@ -59,12 +59,10 @@ python scripts/predict.py --instant <folder>/instant_df_processed.csv --windowed
 ```
 
 ## Notes
-
-- Reading big tables from a network drive (F:, Z:) is slow, and polars can hang on it. Copy them to a local drive first.
 - Notebooks that save tables (02, 03, 04, 06) write to new dated folders, so the data in use is never overwritten.
   Point `paths.local.yaml` at the new folder when you want to use it.
-- The figure notebooks (07–09) save into `plots_dir` and `paper_plots_dir` and overwrite figures with the same name.
+- The figure notebooks (07–09) save into `plots_dir` and overwrite figures with the same name.
 - `make_splits` with the settings in `pipeline.yaml` gives the same train / val / test sizes as the paper split
   in `splits_dir`. Use the paper split itself when you want to compare with the paper numbers.
 
-See [MODEL_CARD.md](MODEL_CARD.md) for the model, its training data and its scores.
+See [MODEL_CARD.md](MODEL_CARD.md) for the model being used, its training data and its scores.
