@@ -1,8 +1,6 @@
 # SPTnano-core
 
 Single-particle tracking analysis, from raw `.nd2` movies to behaviour states predicted by a raw-motion transformer.
-This is the cleaned-up version of the pipeline used for the paper. It has one notebook per step, the trained model,
-and the settings that were used.
 
 ## Install
 
